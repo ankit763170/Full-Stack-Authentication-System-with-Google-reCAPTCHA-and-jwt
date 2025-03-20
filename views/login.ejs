@@ -1,0 +1,50 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h1>Login</h1>
+  
+  <% if (locals.error) { %>
+    <div class="error"><%= error %></div>
+  <% } %>
+  
+  <% if (locals.success) { %>
+    <div class="success"><%= success %></div>
+  <% } %>
+
+  <form action="/login" method="POST">
+    <div class="form-group">
+      <label for="userIdentifier">Username or Email</label>
+      <input 
+        type="text" 
+        id="userIdentifier" 
+        name="userIdentifier" 
+        required
+      >
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        required
+      >
+    </div>
+    
+    <div class="form-group">
+      <div class="g-recaptcha" data-sitekey="<%= recaptchaSiteKey %>"></div>
+    </div>
+    
+    <button type="submit">Login</button>
+  </form>
+  
+  <div class="message">
+    Don't have an account? <a href="/register">Register</a>
+  </div>
+</div>
+
+<!-- Add Google reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<%- include('partials/footer') %>
